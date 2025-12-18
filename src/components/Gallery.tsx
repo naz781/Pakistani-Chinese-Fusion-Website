@@ -155,7 +155,7 @@ export function Gallery() {
         </div>
       </section>
 
-      {/* Filter Buttons */}
+      Filter Buttons
       <section className="py-8 bg-white sticky top-20 z-40 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-3">

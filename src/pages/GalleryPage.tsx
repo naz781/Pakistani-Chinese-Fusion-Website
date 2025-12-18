@@ -216,7 +216,7 @@ export function GalleryPage() {
         {/* Gallery Content */}
         <div className="bg-white">
           {/* Filter Buttons */}
-          <section className="py-8 sticky top-20 bg-white shadow-md z-40">
+          {/* <section className="py-8 sticky top-20 bg-white shadow-md z-40">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex flex-wrap justify-center gap-3">
                 {categories.map((category) => (
@@ -236,7 +236,7 @@ export function GalleryPage() {
                 ))}
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* Gallery Grid */}
           <section className="py-16">

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
-// import mainlogo from "../public/assets/banners/mainlogo1.png"
-import mainlogo from "../public/assets/banners/mainlogo.jpg"
+import mainlogo from "../public/assets/banners/mainlogo1.png"
+// import mainlogo from "../public/assets/banners/mainlogo.jpg"
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
