@@ -5,11 +5,10 @@ import { menuItems, categories} from "../components/MenuData"
 import { Footer } from '../components/Footer';
 // import { MenuImages } from '../assets/MenuImages';
 import { MenuImages } from '../components/MenuImages';
-export function MenuPage() {
+export function DesktopMenu() {
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 2000], [0, 400]);
   const backgroundOpacity = useTransform(scrollY, [0, 800], [0.6, 0.3]);
-
   const [activeCategory, setActiveCategory] = useState('soup');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 return (
@@ -40,8 +39,8 @@ return (
       {/* Menu Content */}
       <div className="bg-white">
         {/* Categories */}
-        <div className="sticky top-20 bg-white shadow-md z-40">
-          <div className="max-w-7xl mx-auto px-4 py-6">
+        {/* <div className="sticky top-20 bg-white shadow-md z-40">
+          <div className="max-w-7xl mx-auto px-4 py-6"> */}
 
             {/* MOBILE HEADER
             <div className="flex md:hidden justify-between items-center">
@@ -69,8 +68,8 @@ return (
                 </motion.button>
               ))}
             </div>
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
 
        
 

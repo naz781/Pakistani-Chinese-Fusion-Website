@@ -70,7 +70,7 @@ import Beef_Fried_Rice from '../public/assets/menuitems/img76_Beef_Fried_Rice.jp
 import Shrimp_Fried_Rice from '../public/assets/menuitems/img77_Shrimp_Fried_Rice.jpg';
 import Veg_Fried_Rice from '../public/assets/menuitems/img78_Veg_Fried_Rice.jpg';
 import Mixed_Special_Fried_Rice from '../public/assets/menuitems/img79_Mixed_Special_Fried_Rice.jpg';
-import White_Rice_pint from '../public/assets/menuitems/img80_White_Rice_pint.jpg';
+import White_Rice_pint from '../public/assets/menuitems/White-Rice-pint.jpg';
 
 export const MenuImages = {
   Chicken_Broccoli,
