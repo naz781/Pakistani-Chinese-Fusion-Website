@@ -67,7 +67,7 @@ export function Hero() {
             View Menu
           </a>
         <a
-  href="tel:+16464388888"
+href="tel:+15164838888"
   className="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-4 rounded-lg transition-all transform hover:scale-105"
 >
   Call Us Now

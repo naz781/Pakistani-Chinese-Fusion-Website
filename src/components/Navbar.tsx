@@ -44,7 +44,7 @@ export function Navbar() {
             >
               {/* KHAO */}
                <img
-          src={mainlogo} // path to your logo file
+          src={mainlogo} 
           alt="Restaurant Logo"
       className="h-12 w-auto" 
        />

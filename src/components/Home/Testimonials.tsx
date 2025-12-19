@@ -117,7 +117,7 @@ export function Testimonials() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
   };
 
@@ -136,23 +136,26 @@ export function Testimonials() {
           </p>
         </motion.div>
 
-        <div className="relative">
+        <div className="relative mb-16">
           {/* Navigation Buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 lg:-translate-x-12 z-10 bg-white p-3 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-            aria-label="Previous reviews"
-          >
-            <ChevronLeft className="w-6 h-6 text-gray-700" />
-          </button>
+<div className="absolute mt-12 left-0 right-0 flex items-center justify-between z-20 ">
+  <button
+    onClick={prevSlide}
+    className="mt-12 bg-white p-3 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+    aria-label="Previous reviews"
+  >
+    <ChevronLeft className="w-6 h-6 text-gray-700" />
+  </button>
 
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 lg:translate-x-12 z-10 bg-white p-3 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-            aria-label="Next reviews"
-          >
-            <ChevronRight className="w-6 h-6 text-gray-700" />
-          </button>
+  <button
+    onClick={nextSlide}
+    className="mt-12 bg-white p-3 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+    aria-label="Next reviews"
+  >
+    <ChevronRight className="w-6 h-6 text-gray-700" />
+  </button>
+</div>
+
 
           {/* Testimonials Grid */}
           <motion.div

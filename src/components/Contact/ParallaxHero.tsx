@@ -1,71 +1,89 @@
-import aboutUsImage from "../../public/assets/banners/aboutuspic1.jpg";
+import aboutUsImage from "../../public/assets/banners/catering.jpg";
 import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { MapSection } from "./MapSection";
+
 export default function ParallaxHero() {
+  const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=30%20Nassau%20Blvd,%20Garden%20City,%20NY%2011530";
   return (
     <>
-      {/* HERO SECTION */}
-      <section
-        className="relative py-20 w-full h-[400px] md:h-[350px] lg:h-[400px] flex items-start justify-center mt-[60px] md:mt-[70px] lg:mt-[80px]"
-        style={{
-          backgroundImage: `url(${aboutUsImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/30"></div>
-        {/* Text Content */}
-        <div className="ml-16 md:mt-0 relative z-10 text-center px-4 md:px-8 flex flex-col items-center justify-start h-full gap-6">
-        <h1 className=" text-2xl md:text-4xl lg:text-5xl font-extrabold text-red-600 font-serif leading-snug tracking-wide mb-16 mx-16 drop-shadow-md">
-          HERE’S HOW YOU CAN REACH US
-</h1>
-{/* Contact Info */}
-<div className="ml-16 flex  md:flex-row gap-6 justify-center items-center mt-8 py-12" >
-  {/* Phone */}
-  <div className="flex items-center gap-3">
-    {/* Icon in red circle */}
-  <div className="flex items-center justify-center 
-                w-12 h-12 
-                md:w-10 md:h-10 
-                sm:w-8 sm:h-8
-                lg:w-12 lg:h-12 
-                bg-red-600 rounded-full">
+      {/* HERO SECTION - TWO COLUMN GRID */}
+      <section className="w-full mt-[60px] md:mt-[70px] lg:mt-[80px] bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            
+            {/* LEFT COLUMN - IMAGE CARD */}
+         <div className="w-full">
+              <div className="relative w-full h-[300px] md:h-[350px] lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={aboutUsImage} 
+                  alt="About Us" 
+                  className="w-full h-full object-cover"
+                />
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/20"></div>
+              </div>
+            </div>
+            {/* RIGHT COLUMN - TEXT CONTENT */}
+            <div className="w-full space-y-10">
+              
+              {/* Heading */}
+              <h1 className="text-3xl md:text-4xl lg:text-5xl mb-8 font-extrabold text-red-600 font-serif leading-tight tracking-wide">
+                HERE'S HOW YOU CAN REACH US
+              </h1>
 
-   <FaPhoneAlt className="text-white text-sm xs:text-xs md:text-lg lg:text-xl" />
+              {/* Contact Cards */}
+              <div className="space-y-6">
+                
+                {/* Phone Card */}
+                <div className="flex items-center gap-5 bg-white px-6 py-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+<a href="tel:+15164838888"><div className="flex items-center gap-2 justify-center w-16 h-16 bg-red-600 rounded-full flex-shrink-0">
+                   <FaPhoneAlt className="text-white text-xl" />
+                  </div>
+                  </a>
+                  <div>
+               <a href="tel:+15164838888">     
+                    <p className=" text-sm text-red-600 font-semibold mb-1">
+                      Call Us Now
+                    </p>
+                    </a>
+                    <p className="font-bold text-gray-900 text-xl">
+                      +1 646 438 8888
+                    </p>
+                  </div>
+                </div>
 
+             
+{/* Location Card */}
+<a
+  href={googleMapsUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block"
+>
+  <div className="flex items-center gap-5 bg-white px-6 py-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
+    <div className="flex items-center justify-center w-16 h-16 bg-red-600 rounded-full flex-shrink-0">
+      <FaMapMarkerAlt className="text-white text-xl" />
     </div>
-    {/* Text */}
-    <div className="-ml-4 text-left">
-      <p className="text-xs md:text-base text-red-600 font-semibold">
-        Call Us Now
-      </p>
-      <p className="font-semibold text-black text-xs md:text-base">
-        +1 646 438 8888
-      </p>
-    </div>
-  </div>
-  {/* Location */}
-  <div className="flex items-center gap-1">
-    {/* Icon in red circle */}
-    <div className="flex items-center justify-center w-12 h-12 bg-red-600 rounded-full">
-      <FaMapMarkerAlt className="text-white text-lg md:text-xl" />
-    </div>
-    {/* Text */}
-    <div className="text-left">
-      <p className="text-xs md:text-base text-red-600 font-semibold">
+    <div>
+      <p className="text-sm text-red-600 font-semibold mb-4">
         Our Location
       </p>
-      <p className="font-semibold text-black text-xs md:text-base">
-        30 Nassau Blvd, Garden City,
-      <br/> NY 11530
+      <p className="font-bold text-gray-900 text-lg leading-relaxed">
+        30 Nassau Blvd, Garden City,<br />NY 11530
       </p>
     </div>
   </div>
-</div>
-</div>
-</section>{/* MAP SECTION */}
-<MapSection />
+</a>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* MAP SECTION AT BOTTOM */}
+      <MapSection />
     </>
   );
 }

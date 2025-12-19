@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -23,42 +23,60 @@ const images = [
 
 export function ImageSlider({ interval = 4000 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleCount = 6; // show 6 images at once
+  const [visibleCount, setVisibleCount] = useState(6); // default desktop
+  const containerRef = useRef(null);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
+  // Update visibleCount based on screen width
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      setVisibleCount(window.innerWidth < 768 ? 4 : 5); // mobile < md = 5
+    };
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) =>
-      prev - 1 < 0 ? images.length - 1 : prev - 1
-    );
-  };
+  // Duplicate images for infinite loop
+  const infiniteImages = [...images, ...images];
+
+  const nextSlide = () => setCurrentIndex(prev => prev + 1);
+  const prevSlide = () => setCurrentIndex(prev => prev - 1);
 
   useEffect(() => {
     const timer = setInterval(nextSlide, interval);
     return () => clearInterval(timer);
   }, [interval]);
 
-  // Get visible images with wrap-around
-  const getVisibleImages = () => {
-    const visibleImages = [];
-    for (let i = 0; i < visibleCount; i++) {
-      const index = (currentIndex + i) % images.length;
-      visibleImages.push({
-        src: images[index],
-        index: index,
-        key: `${index}-${currentIndex}`
-      });
+  // Reset index when reaching duplicate halfway
+  useEffect(() => {
+    if (currentIndex >= images.length) {
+      setTimeout(() => {
+        setCurrentIndex(0);
+        if (containerRef.current) {
+          containerRef.current.style.transition = 'none';
+          containerRef.current.style.transform = 'translateX(0%)';
+        }
+        setTimeout(() => {
+          if (containerRef.current) containerRef.current.style.transition = '';
+        }, 50);
+      }, 500);
+    } else if (currentIndex < 0) {
+      setTimeout(() => {
+        setCurrentIndex(images.length - 1);
+        if (containerRef.current) {
+          containerRef.current.style.transition = 'none';
+          containerRef.current.style.transform = `translateX(-${(100 / visibleCount) * (images.length - 1)}%)`;
+        }
+        setTimeout(() => {
+          if (containerRef.current) containerRef.current.style.transition = '';
+        }, 50);
+      }, 500);
     }
-    return visibleImages;
-  };
-
-  const visibleImages = getVisibleImages();
+  }, [currentIndex, visibleCount]);
 
   return (
     <div className="w-full bg-gradient-to-b from-gray-50 to-white py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-8 sm:px-6">
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
@@ -69,11 +87,13 @@ export function ImageSlider({ interval = 4000 }) {
           </p>
         </div>
 
-        <div className="relative">
+        <div className="relative overflow-hidden">
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            className="absolute -left-3 md:-left-4 top-1/2 -translate-y-1/2 z-10 bg-white p-2 md:p-3 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+            className="absolute left-4 mt-12 -translate-y-1/2 z-10
+                       bg-white p-2 md:p-3 rounded-full shadow-lg
+                       hover:shadow-xl hover:scale-110 transition-all duration-300"
             aria-label="Previous images"
           >
             <ChevronLeft size={20} className="text-gray-800 md:w-6 md:h-6" />
@@ -82,50 +102,47 @@ export function ImageSlider({ interval = 4000 }) {
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
-            className="absolute -right-3 md:-right-4 top-1/2 -translate-y-1/2 z-10 bg-white p-2 md:p-3 rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+            className="absolute right-4 mt-12 -translate-y-1/2 z-10
+                       bg-white p-2 md:p-3 rounded-full shadow-lg
+                       hover:shadow-xl hover:scale-110 transition-all duration-300"
             aria-label="Next images"
           >
             <ChevronRight size={20} className="text-gray-800 md:w-6 md:h-6" />
           </button>
 
-          {/* Image Container */}
-          <div className="flex gap-3 md:gap-4 px-8 md:px-12 overflow-x-auto scrollbar-hide">
-            {visibleImages.map((item, position) => (
+          {/* Sliding Row */}
+          <motion.div
+            ref={containerRef}
+            className="flex gap-1 md:gap-1 px-12 md:px-16 mx-16"
+            style={{ x: `-${(100 / visibleCount) * currentIndex}%` }}
+            animate={{ x: `-${(100 / visibleCount) * currentIndex}%` }}
+            transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+          >
+            {infiniteImages.map((img, i) => (
               <motion.div
-                key={item.key}
+                key={i}
                 className="flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
-                style={{ 
+                style={{
                   width: `${100 / visibleCount}%`,
                   minWidth: `${100 / visibleCount}%`,
                   flex: '0 0 auto'
                 }}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: 1,
-                  transition: { delay: position * 0.05 }
-                }}
                 whileHover={{ y: -4 }}
               >
-                {/* Image Container with Consistent Height */}
                 <div className="relative w-full h-32 sm:h-36 md:h-40">
                   <img
-                    src={item.src}
-                    alt={`Customer photo ${item.index + 1}`}
+                    src={img}
+                    alt={`Customer photo ${i + 1}`}
                     className="w-full h-full object-cover"
                   />
-                  
-                  {/* Overlay on Hover */}
                   <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300" />
-                  
-                  {/* Image Counter */}
                   <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-1.5 py-0.5 rounded-md">
-                    {item.index + 1}
+                    {(i % images.length) + 1}
                   </div>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Dots Indicator */}
@@ -135,7 +152,7 @@ export function ImageSlider({ interval = 4000 }) {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                index === currentIndex
+                index === currentIndex % images.length
                   ? 'bg-red-600 scale-125 w-3'
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
@@ -143,20 +160,12 @@ export function ImageSlider({ interval = 4000 }) {
             />
           ))}
         </div>
-
-        {/* Controls Info */}
-        <div className="text-center mt-6">
-          <div className="inline-flex items-center gap-3 text-sm text-gray-500">
-          </div>
-        </div>
-
-        
       </div>
     </div>
   );
 }
 
-// Hide scrollbar for cleaner look
+// Hide scrollbar
 const styles = `
   .scrollbar-hide {
     -ms-overflow-style: none;
@@ -167,7 +176,6 @@ const styles = `
   }
 `;
 
-// Add styles to head
 if (typeof document !== 'undefined') {
   const styleSheet = document.createElement("style");
   styleSheet.innerText = styles;
