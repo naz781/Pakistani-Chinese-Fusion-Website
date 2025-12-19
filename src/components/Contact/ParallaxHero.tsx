@@ -17,9 +17,9 @@ export default function ParallaxHero() {
         <div className="absolute inset-0 bg-black/30"></div>
 
         {/* Text Content */}
-        <div className="ml-16 relative z-10 text-center px-4 md:px-8 flex flex-col items-center justify-start h-full gap-6">
-        <h1 className="ml-16 text-2xl md:text-4xl lg:text-5xl font-extrabold text-red-600 font-serif leading-snug tracking-wide mb-16 mx-16 drop-shadow-md">
-  HERE’S HOW YOU CAN REACH US
+        <div className="ml-16  md:mt-0 relative z-10 text-center px-4 md:px-8 flex flex-col items-center justify-start h-full gap-6">
+        <h1 className=" text-2xl md:text-4xl lg:text-5xl font-extrabold text-red-600 font-serif leading-snug tracking-wide mb-16 mx-16 drop-shadow-md">
+          HERE’S HOW YOU CAN REACH US
 </h1>
 
 {/* Contact Info */}
