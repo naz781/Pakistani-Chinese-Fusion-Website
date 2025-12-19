@@ -113,7 +113,7 @@ export function ImageSlider({ interval = 4000 }) {
           {/* Sliding Row */}
           <motion.div
             ref={containerRef}
-            className="flex gap-1 md:gap-1 px-12 md:px-16 mx-16"
+            className="flex gap-0 pr-24"
             style={{ x: `-${(100 / visibleCount) * currentIndex}%` }}
             animate={{ x: `-${(100 / visibleCount) * currentIndex}%` }}
             transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
@@ -121,7 +121,7 @@ export function ImageSlider({ interval = 4000 }) {
             {infiniteImages.map((img, i) => (
               <motion.div
                 key={i}
-                className="flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                className="flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 mx-4"
                 style={{
                   width: `${100 / visibleCount}%`,
                   minWidth: `${100 / visibleCount}%`,
