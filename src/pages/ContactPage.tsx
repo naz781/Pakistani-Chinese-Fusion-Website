@@ -28,7 +28,6 @@ export function ContactPage() {
       {/* Page Content */}
       <div className="relative z-10">
         <HeroSection />
-      
         <ParallaxHero/>
         {/* <div className="bg-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">

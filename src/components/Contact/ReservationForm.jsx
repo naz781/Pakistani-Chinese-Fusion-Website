@@ -6,11 +6,9 @@ export function ReservationForm() {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', date: '', time: '', guests: '2', message: ''
   });
-
   const whatsappNumber = '5164838888'; 
   const handleSubmit = e => {
     e.preventDefault();
-
     const message = `Reservation Request:
 Name: ${formData.name}
 Email: ${formData.email}
@@ -19,17 +17,13 @@ Date: ${formData.date}
 Time: ${formData.time}
 Number of Guests: ${formData.guests}
 Special Requests: ${formData.message || 'None'}`;
-
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
-
     setFormData({ name: '', email: '', phone: '', date: '', time: '', guests: '2', message: '' });
   };
-
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   return (
     <motion.form
       onSubmit={handleSubmit}

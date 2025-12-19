@@ -34,16 +34,17 @@ export function MapSection() {
             referrerPolicy="no-referrer-when-downgrade"
           />
 
-          {/* DARK OVERLAY */}
-          <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-center pointer-events-none">
-            <MapPin size={64} className="text-white drop-shadow-lg mb-4" />
-            <h3 className="text-2xl font-semibold text-white drop-shadow-lg">
-              {address}
-            </h3>
-            <p className="text-white/90 mt-2">
-              Click to open in Google Maps
-            </p>
-          </div>
+          <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
+<div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+  <MapPin size={64} className="text-white drop-shadow-lg mb-4" />
+  <h3 className="text-2xl font-semibold text-white drop-shadow-lg">
+    {address}
+  </h3>
+  <p className="text-white/90 mt-2">
+    Click to open in Google Maps
+  </p>
+</div>
+
         </a>
 
       </div>

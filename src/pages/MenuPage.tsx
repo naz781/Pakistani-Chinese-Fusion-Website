@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+// import { Menu, X } from 'lucide-react';
 import { menuItems, categories} from "../components/MenuData"
 import { Footer } from '../components/Footer';
 // import { MenuImages } from '../assets/MenuImages';
-import { MenuImages } from '../components/MenuImages';
+// import { MenuImages } from '../components/MenuImages';
 export function MenuPage() {
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 2000], [0, 400]);
