@@ -8,12 +8,12 @@ export function MapSection() {
   const iframeSrc = `https://maps.google.com/maps?q=${encodedAddress}&output=embed`;
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-gray-50">
+      <div className="w-full">
 
-        <h2 className="text-4xl font-bold text-center mb-12">
+        {/* <h2 className="text-4xl font-bold text-center mb-12">
           Find Us
-        </h2>
+        </h2> */}
 
         {/* CLICKABLE MAP */}
         <a

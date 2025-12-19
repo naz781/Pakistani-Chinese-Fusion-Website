@@ -4,6 +4,7 @@ import { ReservationForm } from '../components/Contact/ReservationForm';
 import { MapSection } from '../components/Contact/MapSection';
 import { Footer } from '../components/Footer';
 import { ContactInfo } from '../components/Contact/ContactInfo';
+import ParallaxHero from '../components/Contact/ParallaxHero';
 export function ContactPage() {
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 2000], [0, 400]);
@@ -27,13 +28,15 @@ export function ContactPage() {
       {/* Page Content */}
       <div className="relative z-10">
         <HeroSection />
-        <div className="bg-white py-20">
+      
+        <ParallaxHero/>
+        {/* <div className="bg-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
             <ContactInfo />
             <ReservationForm />
           </div>
         </div>
-        <MapSection />
+        <MapSection /> */}
         <Footer />
       </div>
     </div>

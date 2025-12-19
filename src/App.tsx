@@ -5,7 +5,7 @@ import { AboutPage } from './pages/AboutPage';
 import { MenuPage } from './pages/MenuPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { ContactPage } from './pages/ContactPage';
-
+import { Testing } from './pages/Testing';
 export default function App() {
   return (
     <Router>
@@ -17,6 +17,7 @@ export default function App() {
           <Route path="/menu" element={<MenuPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/Testing" element={<Testing />} />
         </Routes>
       </div>
     </Router>

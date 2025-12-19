@@ -49,7 +49,6 @@ export function FeaturedDishes() {
             Signature creations where Pakistani tradition meets Chinese innovation
           </p>
         </motion.div>
-
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -62,8 +61,7 @@ export function FeaturedDishes() {
               variants={itemVariants}
               whileHover={{ y: -10 }}
               className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
-            >
-              <div className="relative h-64 overflow-hidden">
+            ><div className="relative h-64 overflow-hidden">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.4 }}
