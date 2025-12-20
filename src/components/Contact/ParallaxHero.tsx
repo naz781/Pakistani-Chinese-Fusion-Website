@@ -47,7 +47,7 @@ export default function ParallaxHero() {
                     </p>
                     </a>
                     <p className="font-bold text-gray-900 text-xl">
-                      +1 646 438 8888
+                      (516) 438 8888
                     </p>
                   </div>
                 </div>

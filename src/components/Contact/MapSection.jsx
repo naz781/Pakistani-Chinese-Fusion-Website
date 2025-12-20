@@ -35,15 +35,9 @@ export function MapSection() {
             rel="noopener noreferrer"
             className="absolute inset-0 bg-black/20 hover:bg-black/30 flex flex-col items-center justify-center text-center transition-colors duration-300 group"
           >
-            <div className="bg-white/90 backdrop-blur-sm px-8 py-6 rounded-xl shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
-              <MapPin size={48} className="text-red-600 mx-auto mb-3" />
-              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
-                {address}
-              </h3>
-              <p className="text-gray-600 font-medium">
-                Click to open in Google Maps
-              </p>
-            </div>
+            {/* <div className="bg-white/90 backdrop-blur-sm px-8 py-6 rounded-xl shadow-2xl transform group-hover:scale-105 transition-transform duration-300"> */}
+              {/* <MapPin size={48} className="text-red-600 mx-auto mb-3" /> */}
+              
           </a>
         </div>
       </div>
