@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 // import { Menu, X } from 'lucide-react';
-import { menuItems, categories} from "../components/MenuData"
+import { menuItems, categories} from "../components/MenuData";
+  import mainbanner from "../public/assets/banners/mainbanner.jpeg";
 import { Footer } from '../components/Footer';
 // import { MenuImages } from '../assets/MenuImages';
 // import { MenuImages } from '../components/MenuImages';
@@ -20,11 +21,12 @@ return (
       className="fixed inset-0 z-0"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 z-10" />
-      <img
-        src="https://images.unsplash.com/photo-1606913209102-a51910ba83cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"
-        alt="Background"
-        className="w-full h-full object-cover"
-      />
+   
+            <img
+              src={mainbanner}
+              alt="Background"
+              className="w-full h-full object-cover"
+            />
     </motion.div>
 
     {/* Content */}

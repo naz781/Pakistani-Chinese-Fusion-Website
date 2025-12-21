@@ -7,7 +7,7 @@ import { AboutUs } from '../components/Home/AboutUs';
 import { ImageSlider } from '../components/Home/ImageSlider';
 import { Testimonials } from '../components/Home/Testimonials';
 import { Footer } from '../components/Footer';
-
+import mainbanner from "../public/assets/banners/mainbanner.jpeg";
 export function Home() {
   const contentRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
@@ -32,11 +32,12 @@ export function Home() {
           className="fixed inset-0 z-0 pointer-events-none"
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 z-10"></div>
-          <img
-            src="https://images.unsplash.com/photo-1606913209102-a51910ba83cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGluZXNlJTIwbGFudGVybnMlMjBjdWx0dXJlfGVufDF8fHx8MTc2NTg5ODQxOHww&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Chinese Cultural Background"
-            className="w-full h-full object-cover"
-          />
+       
+                 <img
+                   src={mainbanner}
+                   alt="Background"
+                   className="w-full h-full object-cover"
+                 />
         </motion.div>
 
         {/* Scrolling Content */}
