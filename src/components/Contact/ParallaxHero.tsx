@@ -52,7 +52,6 @@ export default function ParallaxHero() {
     </p>
   </div>
 </div>
-
 {/* Location Card */}
 <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className="block">
   <div className="flex items-center gap-8 bg-white px-6 py-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300">
@@ -69,7 +68,6 @@ export default function ParallaxHero() {
     </div>
   </div>
 </a>
-
               </div>
             </div>
 

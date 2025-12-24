@@ -4,12 +4,13 @@ import { menuItems, categories} from "../components/MenuData"
 import { Footer } from '../components/Footer';
 export function MenuPage() {
   const { scrollY } = useScroll();
-  const backgroundY = useTransform(scrollY, [0, 2000], [0, 400]);
+  const backgroundY = useTransform(scrollY, [0, 600], [0, 150]);
+
   const backgroundOpacity = useTransform(scrollY, [0, 800], [0.6, 0.3]);
   const [activeCategory, setActiveCategory] = useState('soup');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 return (
-  <div className="relative min-h-screen">
+  <div className="relative min-h-[200vh] overflow-hidden">
     {/* Parallax Background */}
     <motion.div
       style={{ y: backgroundY, opacity: backgroundOpacity }}
