@@ -78,19 +78,16 @@ export function Footer() {
           >
             <h4 className="text-xl mb-6">Opening Hours</h4>
             <div className="flex items-start gap-3">
-              <Clock className="w-5 h-5 text-red-400 flex-shrink-0 mt-1" />
+              {/* <Clock className="w-5 h-5 text-red-400 flex-shrink-0 mt-1" /> */}
               <div className="text-gray-300 space-y-2">
-                <p> Saturday 12:00 to 10:30</p>
-                <p> Sunday 12:00 to 09:30</p>
-                <p> Monday to Friday 12:00 to 10:00</p>
-                <a href="/contact" className="text-gray-300 hover:text-red-400 transition-colors"><p className="mt-3">Call for Catering Services</p></a>
-                
-                <p className="text-sb mt-3">Walk-ins Welcome</p>
+                <p> Saturday 12:00 PM to 10:30 PM</p>
+                <p> Sunday 12:00 PM to 09:30 PM</p>
+                <p> Monday to Friday 12:00 PM to 10:00 PM</p>
                
+                <p className="text-sb mt-3">Walk-ins Welcome</p>
               </div>
             </div>
           </motion.div>
-
           {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -100,6 +97,11 @@ export function Footer() {
           >
             <h4 className="text-xl mb-6">Quick Links</h4>
             <ul className="space-y-3">
+                <li>
+                <a href="/about" className="text-gray-300 hover:text-red-400 transition-colors">
+                  About Us
+                </a>
+              </li>
               <li>
                 <a href="/menu" className="text-gray-300 hover:text-red-400 transition-colors">
                   Our Menu
@@ -115,16 +117,12 @@ export function Footer() {
                   Catering Services
                 </a> */}
               </li>
-              <li>
-                <a href="/about" className="text-gray-300 hover:text-red-400 transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
+             <a href="/contact" className="text-gray-300 hover:text-red-400 transition-colors"><p className="mt-3">Call for Catering Services</p></a>
+              {/* <li>
                 <a href="#halal" className="text-gray-300 hover:text-red-400 transition-colors">
                   Halal Certification
                 </a>
-              </li>
+              </li> */}
             </ul>
           </motion.div>
         </div>

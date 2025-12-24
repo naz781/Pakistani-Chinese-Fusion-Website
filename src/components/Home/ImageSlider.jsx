@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+
 const images = [
   "/assets/review_pictures/pic1.jpg",
   "/assets/review_pictures/pic2.jpg",
@@ -10,72 +11,67 @@ const images = [
   "/assets/review_pictures/pic6.jpg",
   "/assets/review_pictures/pic7.jpg",
   "/assets/review_pictures/pic8.jpg",
-  "/assets/review_pictures/pic9.jpg",
-  "/assets/review_pictures/pic10.jpg",
   "/assets/review_pictures/pic11.jpg",
   "/assets/review_pictures/pic12.jpg",
   "/assets/review_pictures/pic13.jpg",
   "/assets/review_pictures/pic14.jpg",
 ];
 
-
 export function ImageSlider({ interval = 4000 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(6); // default desktop
-  const containerRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(images.length);
+  const [visibleCount, setVisibleCount] = useState(5);
+  const [shouldAnimate, setShouldAnimate] = useState(true);
 
-  // Update visibleCount based on screen width
+  /* Responsive visible count */
   useEffect(() => {
-    const updateVisibleCount = () => {
-      setVisibleCount(window.innerWidth < 768 ? 4 : 5); // mobile < md = 5
+    const update = () => {
+      setVisibleCount(window.innerWidth < 768 ? 4 : 5);
     };
-    updateVisibleCount();
-    window.addEventListener('resize', updateVisibleCount);
-    return () => window.removeEventListener('resize', updateVisibleCount);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, []);
 
-  // Duplicate images for infinite loop
-  const infiniteImages = [...images, ...images];
+  /* Infinite buffer */
+  const extendedImages = [...images, ...images, ...images];
 
-  const nextSlide = () => setCurrentIndex(prev => prev + 1);
-  const prevSlide = () => setCurrentIndex(prev => prev - 1);
+  /* Controls */
+  const nextSlide = () => setCurrentIndex((i) => i + 1);
+  const prevSlide = () => setCurrentIndex((i) => i - 1);
 
+  /* Autoplay */
   useEffect(() => {
-    const timer = setInterval(nextSlide, interval);
-    return () => clearInterval(timer);
+    const id = setInterval(nextSlide, interval);
+    return () => clearInterval(id);
   }, [interval]);
 
-  // Reset index when reaching duplicate halfway
+  /* Seamless reset */
   useEffect(() => {
-    if (currentIndex >= images.length) {
-      setTimeout(() => {
-        setCurrentIndex(0);
-        if (containerRef.current) {
-          containerRef.current.style.transition = 'none';
-          containerRef.current.style.transform = 'translateX(0%)';
-        }
-        setTimeout(() => {
-          if (containerRef.current) containerRef.current.style.transition = '';
-        }, 50);
-      }, 500);
-    } else if (currentIndex < 0) {
-      setTimeout(() => {
-        setCurrentIndex(images.length - 1);
-        if (containerRef.current) {
-          containerRef.current.style.transition = 'none';
-          containerRef.current.style.transform = `translateX(-${(100 / visibleCount) * (images.length - 1)}%)`;
-        }
-        setTimeout(() => {
-          if (containerRef.current) containerRef.current.style.transition = '';
-        }, 50);
-      }, 500);
+    if (currentIndex === images.length * 2) {
+      setShouldAnimate(false);
+      setCurrentIndex(images.length);
     }
-  }, [currentIndex, visibleCount]);
+
+    if (currentIndex === images.length - 1) {
+      setShouldAnimate(false);
+      setCurrentIndex(images.length * 2 - 1);
+    }
+  }, [currentIndex]);
+
+  /* Re-enable animation after instant jump */
+  useEffect(() => {
+    if (!shouldAnimate) {
+      requestAnimationFrame(() => setShouldAnimate(true));
+    }
+  }, [shouldAnimate]);
+
+  const actualIndex = ((currentIndex % images.length) + images.length) % images.length;
 
   return (
     <div className="w-full bg-gradient-to-b from-gray-50 to-white py-10">
       <div className="max-w-7xl mx-auto px-8 sm:px-6">
-        {/* Section Header */}
+
+        {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             Customer Moments Gallery
@@ -86,96 +82,76 @@ export function ImageSlider({ interval = 4000 }) {
         </div>
 
         <div className="relative overflow-hidden">
+
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
             className="absolute left-4 mt-12 -translate-y-1/2 z-10
-                       bg-white p-2 md:p-3 rounded-full shadow-lg
-                       hover:shadow-xl hover:scale-110 transition-all duration-300"
-            aria-label="Previous images"
+              bg-white p-2 md:p-3 rounded-full shadow-lg
+              hover:shadow-xl hover:scale-110 transition-all"
           >
-            <ChevronLeft size={20} className="text-gray-800 md:w-6 md:h-6" />
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
           </button>
 
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
             className="absolute right-4 mt-12 -translate-y-1/2 z-10
-                       bg-white p-2 md:p-3 rounded-full shadow-lg
-                       hover:shadow-xl hover:scale-110 transition-all duration-300"
-            aria-label="Next images"
+              bg-white p-2 md:p-3 rounded-full shadow-lg
+              hover:shadow-xl hover:scale-110 transition-all"
           >
-            <ChevronRight size={20} className="text-gray-800 md:w-6 md:h-6" />
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
           </button>
 
-          {/* Sliding Row */}
+          {/* Slider */}
           <motion.div
-            ref={containerRef}
-            className="flex gap-0 pr-24"
-            style={{ x: `-${(100 / visibleCount) * currentIndex}%` }}
+            className="flex pr-24"
             animate={{ x: `-${(100 / visibleCount) * currentIndex}%` }}
-            transition={{ type: 'tween', duration: 0.5, ease: 'easeInOut' }}
+            transition={
+              shouldAnimate
+                ? { duration: 0.5, ease: 'easeInOut' }
+                : { duration: 0 }
+            }
           >
-            {infiniteImages.map((img, i) => (
+            {extendedImages.map((img, i) => (
               <motion.div
                 key={i}
-                className="flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 mx-4"
+                className="flex-shrink-0 mx-4 rounded-xl overflow-hidden shadow-md hover:shadow-lg"
                 style={{
                   width: `${100 / visibleCount}%`,
                   minWidth: `${100 / visibleCount}%`,
-                  flex: '0 0 auto'
                 }}
                 whileHover={{ y: -4 }}
               >
-                <div className="relative w-full h-32 sm:h-36 md:h-40">
+                <div className="relative h-32 sm:h-36 md:h-40">
                   <img
                     src={img}
-                    alt={`Customer photo ${i + 1}`}
+                    alt={`Customer ${i + 1}`}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-all duration-300" />
-                  <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-1.5 py-0.5 rounded-md">
-                    {(i % images.length) + 1}
-                  </div>
+                  <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition" />
                 </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
 
-        {/* Dots Indicator */}
-        <div className="flex justify-center items-center mt-8 gap-1.5">
-          {images.map((_, index) => (
+        {/* Dots */}
+        <div className="flex justify-center mt-8 gap-2">
+          {images.map((_, i) => (
             <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                index === currentIndex % images.length
-                  ? 'bg-red-600 scale-125 w-3'
-                  : 'bg-gray-300 hover:bg-gray-400'
+              key={i}
+              onClick={() => setCurrentIndex(images.length + i)}
+              className={`h-2 rounded-full transition-all ${
+                i === actualIndex
+                  ? 'bg-red-600 w-4'
+                  : 'bg-gray-300 w-2'
               }`}
-              aria-label={`Go to image ${index + 1}`}
             />
           ))}
         </div>
+
       </div>
     </div>
   );
-}
-
-// Hide scrollbar
-const styles = `
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-if (typeof document !== 'undefined') {
-  const styleSheet = document.createElement("style");
-  styleSheet.innerText = styles;
-  document.head.appendChild(styleSheet);
 }

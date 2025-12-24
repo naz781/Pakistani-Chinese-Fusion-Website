@@ -1,6 +1,5 @@
 import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { MapSection } from "./MapSection";
-
 export default function ParallaxHero() {
   const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=30%20Nassau%20Blvd,%20Garden%20City,%20NY%2011530";
   return (
@@ -8,8 +7,7 @@ export default function ParallaxHero() {
       {/* HERO SECTION - TWO COLUMN GRID */}
       <section className="w-full mt-[60px] md:mt-[70px] lg:mt-[80px] bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">            
             {/* LEFT COLUMN - IMAGE CARD */}
          <div className="w-full">
               <div className="relative w-full h-[300px] md:h-[350px] lg:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
@@ -24,12 +22,10 @@ export default function ParallaxHero() {
             </div>
             {/* RIGHT COLUMN - TEXT CONTENT */}
             <div className="w-full space-y-10">
-              
               {/* Heading */}
               <h1 className="text-3xl md:text-4xl lg:text-5xl mb-8 font-extrabold text-red-600 font-serif leading-tight tracking-wide">
                 HERE'S HOW YOU CAN REACH US
               </h1>
-
               {/* Contact Cards */}
               <div className="space-y-6">
                 

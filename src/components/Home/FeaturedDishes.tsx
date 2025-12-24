@@ -10,10 +10,10 @@ export function FeaturedDishes() {
   });
 
   const dishes = [
-    { name: 'Chicken Lo Mein', desc: 'Lo mein noodles with chicken', price: '$10.99 / $13.99', image: MenuImages.Chicken_Lo_Mein },
+    { name: 'Chicken Lo Mein', desc: 'Lo mein noodles with chicken', price: '$10.99 / $13.99', image:"/assets/featured/chicken_lo_mein.png" },
     { name: 'Beef Lo Mein', desc: 'Lo mein noodles with beef', price: '$10.99 / $13.99', image: MenuImages.Beef_Lo_Mein },
     { name: 'Sesame Chicken', desc: 'Crispy chicken glazed in sweet sesame sauce', price: '$13.99', image: MenuImages.Sesame_Chicken },
-    { name: 'Chicken Corn Soup', desc: 'Chicken, sweet corn, smooth broth', price: '$5.99 / $7.99', image: MenuImages.Chicken_Corn_Soup },
+    { name: 'Chicken Corn Soup', desc: 'Chicken, sweet corn, smooth broth', price: '$5.99 / $7.99', image: "/assets/featured/chicken_Corn.png" },
     { name: 'Shrimp Broccoli', desc: 'Shrimp sautéed with broccoli', price: '$14.99', image: MenuImages.Shrimp_Broccoli },
     { name: 'Veg Fried Rice', desc: 'Vegetable fried rice', price: '$8.99 / $9.99', image: MenuImages.Veg_Fried_Rice }
   ];
