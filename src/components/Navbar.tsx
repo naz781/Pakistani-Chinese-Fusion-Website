@@ -103,7 +103,7 @@ export function Navbar() {
               </Link>
             ))}
             <a
-              href="#reservation"
+              href="/contact"
               onClick={() => setIsOpen(false)}
               className="block mt-4 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg text-center transition-colors"
             >

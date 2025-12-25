@@ -52,10 +52,12 @@ export function Footer() {
             <h4 className="text-xl mb-6">Contact Us</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-red-400 flex-shrink-0 mt-1" />
-                <span className="text-gray-300">
+                <MapPin className="w-5 h-5 text-red-400 flex-shrink-0 mt-1"/>
+                <span className="text-gray-300" >
                   {/* 123 Fusion Avenue<br /> */}
-                  30 Nassau Blvd, Garden City, NY 11530
+                  <a href="https://www.google.com/maps/search/?api=1&query=30%20Nassau%20Blvd,%20Garden%20City,%20NY%2011530"  target="_blank"
+                   rel="noopener noreferrer">30 Nassau Blvd, Garden City, NY 11530</a>
+                
                 </span>
               </li>
               <li className="flex items-center gap-3">

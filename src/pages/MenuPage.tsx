@@ -65,7 +65,7 @@ return (
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-20 h-20 rounded-lg object-cover"
+                  className="w-24 h-24 rounded-lg object-cover"
                 />
               )}
               <div className="flex-1">
@@ -83,7 +83,7 @@ return (
   })}
 </div>
             {/* DESKTOP BUBBLES */}
-            <div className="hidden md:flex overflow-x-auto gap-4">
+            <div className="hidden md:flex flex-wrap justify-center gap-4">
               {categories.map((category) => (
                 <motion.button
                   key={category.id}
@@ -103,13 +103,13 @@ return (
           </div>
         </div>
         {/* Menu Items */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4">
+        <section className="py-16 hidden md:flex flex-col w-full">
+          <div className="max-w-7xl mx-auto px-4 w-full">
             <motion.div
               key={activeCategory}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full"
             >
               {menuItems[activeCategory].map((item, index) => (
                 <motion.div
@@ -117,7 +117,7 @@ return (
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.05 }}
-                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl"
+                  className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl w-full"
                 >
                   <div className="flex gap-4">
                     {item.image && (
